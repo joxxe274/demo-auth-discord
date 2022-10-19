@@ -15,7 +15,7 @@ export const getDiscordToken = async (code: string) => {
     'client_secret': process.env.CLIENT_SECRET,
     'grant_type': 'authorization_code',
     'code': code,
-    redirect_uri: `http://localhost:3000/discord-catch`,
+    redirect_uri: `${process.env.NEXT_PUBLIC_REDIRECT_URI}/discord-catch`,
     scope: 'identify',
   }
   const response = await api.post('/token', data, {headers: {'Content-Type': 'application/x-www-form-urlencoded'}});
