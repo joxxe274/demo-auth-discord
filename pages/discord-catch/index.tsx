@@ -4,11 +4,12 @@ import { useRouter } from "next/router";
 import { discordApi } from "../../api";
 
 interface Props{
-  access_token: string,
-  expires_in: number,
-  refresh_token: string,
-  scope: string,
-  token_type: string
+  access_token: string;
+  expires_in: number;
+  refresh_token: string;
+  scope: string;
+  token_type: string;
+  error?: any;
 }
 
 const DiscordCatch: React.FC<Props> = (props: Props) => {
@@ -28,6 +29,7 @@ const DiscordCatch: React.FC<Props> = (props: Props) => {
     <div>
       <h1>Discord catch</h1>
       <p>Code: {props.access_token}</p>
+      {props.error && <p>Error: {props.error}</p>}
     </div>
   )
 }
@@ -40,9 +42,12 @@ export const getServerSideProps: GetServerSideProps = async ({ params, query }) 
   if (Array.isArray(code)) {
     code = code[0];
   }
-  const res = await discordApi.getDiscordToken(code || '');
-
-  return {
-    props: { ...res },
-  };
+  try {
+    const res = await discordApi.getDiscordToken(code || '');
+    return {
+      props: { ...res },
+    };
+  } catch (error: any) {
+    return { props: { error: error.response.data.error_description } };
+  }
 }
