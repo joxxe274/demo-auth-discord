@@ -3,13 +3,97 @@
 }
 
 .main {
-  min-height: 100vh;
+  min-height: calc(100vh - 111px);
   padding: 4rem 0;
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+}
+
+.main h1 {
+  font-size: 24px;
+  text-align: center;
+  max-width: 440px;
+  margin: 0 auto;
+}
+
+.main .discordButtonBox {
+  margin-top: 2rem;
+}
+
+.main .discordButtonBox .discordButton {
+  color: #fff;
+  background-color: #7289da;
+  border-color: #7289da;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  user-select: none;
+  border: 1px solid transparent;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+}
+.main .discordButtonBox p {
+  text-align: center;
+}
+.main .discordButtonBox .discordButton .imageIcon {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+/* discord button hover styles */
+.main .discordButtonBox .discordButton:hover {
+  color: #fff;
+  background-color: #5f73bc;
+  border-color: #5f73bc;
+}
+
+.main .discordResults {
+  max-width: 400px;
+  border: solid 1px #7289da;
+  border-radius: 4px;
+  width: 100%;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40px;
+  padding: 20px;
+}
+.main .discordResults .avatar {
+  width: 100px;
+  position: relative;
+  height: 100%;
+  margin: 0 auto;
+  border-radius: 100%;
+  overflow: hidden;
+}
+
+.main .discordResults .avatar > div {
+  position: relative;
+  width: 100px;
+  height: 0;
+  padding-top: 100%
+}
+
+.main .discordResults p {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.main .discordResults .discordButtonBox {
+  margin: 20px auto 0;
+  display: block;
+  width: 113px;
 }
 
 .footer {
