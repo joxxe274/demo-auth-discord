@@ -10,6 +10,8 @@ interface Props{
   scope: string;
   token_type: string;
   error?: any;
+  errorStatus?: boolean;
+  errorJson?: any;
 }
 
 const DiscordCatch: React.FC<Props> = (props: Props) => {
@@ -30,6 +32,8 @@ const DiscordCatch: React.FC<Props> = (props: Props) => {
       <h1>Discord catch</h1>
       <p>Code: {props.access_token}</p>
       {props.error && <p>Error: {props.error}</p>}
+      {props.errorStatus && <p>Error status true</p>}
+      {props.errorJson && <p>Error status:  {JSON.stringify(props.errorJson)}</p>}
     </div>
   )
 }
@@ -48,6 +52,6 @@ export const getServerSideProps: GetServerSideProps = async ({ params, query }) 
       props: { ...res },
     };
   } catch (error: any) {
-    return { props: { error: error.response.data.error_description } };
+    return { props: { error: error.response.data.error_description, errorStatus: true, errorJson: JSON.stringify(error) } };
   }
 }
