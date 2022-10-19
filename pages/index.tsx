@@ -3,7 +3,6 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import ReactJson from 'react-json-view'
 import { discordPublicApi } from '../api'
 
 interface User {
@@ -26,6 +25,7 @@ interface User {
 
 const Home: NextPage = () => {
   const [isLogged, setIsLogged] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(true);
   const [user, setUser] = React.useState<User | null>(null);
 
   React.useEffect(() => {
@@ -34,11 +34,13 @@ const Home: NextPage = () => {
       setIsLogged(true);
       getUserData();
     }
+    setIsLoading(false);
   }, [])
 
   const getUserData = async () => {
     const data = JSON.parse(localStorage.getItem('discord_token_data') || '{access_token: ""}');
     const res = await discordPublicApi.getDiscordUser(data.access_token);
+    setIsLoading(false)
     setUser(res);
   }
 
@@ -60,7 +62,7 @@ const Home: NextPage = () => {
         <h1 className={styles.title}>
           This is a simple demo about how to create an authentication method with Discord account
         </h1>
-        {!isLogged && (
+        {!isLogged && !isLoading && (
           <div className={styles.discordButtonBox}>
             <p>Use this button to test</p>
             <a href={process.env.NEXT_PUBLIC_DISCORD_AUTH_URL}>
@@ -73,7 +75,7 @@ const Home: NextPage = () => {
             </a>
           </div>
         )}
-        {isLogged && user && (
+        {isLogged && !isLoading && user && (
           <div className={styles.discordResults}>
             <div className={styles.avatar}>
               <div>
