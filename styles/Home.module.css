@@ -188,7 +188,7 @@
 }
 
 .logo {
-  height: 1em;
+  display: block;
   margin-left: 0.5rem;
 }
 

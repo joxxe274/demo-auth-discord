@@ -114,14 +114,13 @@ const Home: NextPage = () => {
 
       <footer className={styles.footer}>
         <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+          href="https://github.com/joxxe274"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
+          Developed by @joxxe274
+          <span className={styles.logo}></span>
+            <Image src="/assets/img/github-icon.png" alt="Vercel Logo" width={20} height={20} />
         </a>
       </footer>
     </div>
